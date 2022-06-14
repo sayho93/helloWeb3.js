@@ -36,7 +36,7 @@ export default function App({$app, $web3}) {
                 })
             })
         )
-        console.log(ret)
+
         this.setState({
             ...this.state,
             accounts: ret,
@@ -84,7 +84,18 @@ export default function App({$app, $web3}) {
             const candidateName = this.state.inputText
             console.log(candidateName)
 
-            await this.state.contract.methods.voteForCandidate($web3.utils.asciiToHex(candidateName)).send({from: this.state.account})
+            if (this.state.candidates.indexOf(candidateName) === -1) {
+                alert('Invalid candidate name')
+                return
+            }
+
+            try {
+                await this.state.contract.methods.voteForCandidate($web3.utils.asciiToHex(candidateName)).send({from: this.state.account})
+            } catch (error) {
+                console.log(error)
+                alert(error)
+            }
+
             const voteCnt = await this.state.contract.methods.totalVotesFor($web3.utils.asciiToHex(candidateName)).call()
 
             const idx = this.state.candidates.indexOf(candidateName)
@@ -130,7 +141,7 @@ export default function App({$app, $web3}) {
         )
 
         const contract = new $web3.eth.Contract(abi)
-        contract.options.address = '0x7A0C14b9bDEd496dc068Ea2C2E80Fa2Be84f50ea'
+        contract.options.address = '0xA58dBFa9Ad6F221071d4b7b2EE58e00dc0b829D6'
 
         const account = (await $web3.eth.getAccounts())[0]
 

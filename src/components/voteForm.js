@@ -23,14 +23,11 @@ export function VoteForm({$app, initialState, textHandler, onClick}) {
 
         const input = this.$target.querySelector('#candidate')
 
-        input.addEventListener('keyup', event => {
-            if (event.key === 'Enter') {
-                onClick()
-                return
-            }
-
+        input.addEventListener('change', event => {
             textHandler(event.target.value)
         })
+
+        input.focus()
 
         const button = this.$target.querySelector('a')
         button.addEventListener('click', event => {
@@ -38,6 +35,12 @@ export function VoteForm({$app, initialState, textHandler, onClick}) {
             onClick()
         })
     }
+
+    this.$target.addEventListener('keyup', event => {
+        if (event.key === 'Enter') {
+            onClick()
+        }
+    })
 
     this.render()
 }
