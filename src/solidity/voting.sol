@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.14;
 
 contract Voting {
@@ -5,7 +6,7 @@ contract Voting {
 
     bytes32[] public candidateList;
 
-    constructor(bytes32[] memory candidateNames) public {
+    constructor(bytes32[] memory candidateNames) {
         candidateList = candidateNames;
     }
 
