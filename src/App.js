@@ -2,9 +2,11 @@ import {VoteInfo} from './components/voteInfo.js'
 import {VoteForm} from './components/voteForm.js'
 import {AccountInfo} from './components/accountInfo.js'
 import {BlockInfo} from './components/blockInfo.js'
+import {Carousel} from './components/carousel.js'
 
 export default function App({$app, $web3}) {
     this.$title = document.createElement('h1')
+    this.$title.className = 'text-center'
     this.$title.innerText = 'A Simple Hello World Voting Application'
     $app.appendChild(this.$title)
 
@@ -62,6 +64,8 @@ export default function App({$app, $web3}) {
             blocks,
         })
     }
+
+    new Carousel({$app})
 
     const voteInfo = new VoteInfo({
         $app,
