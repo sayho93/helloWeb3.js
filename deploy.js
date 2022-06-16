@@ -41,6 +41,7 @@ const accounts = await getAccounts()
 
 const candidates = ['Rama', 'Nick', 'Jose']
 const res = await deploy(candidates, accounts[0], 1500000, web3.utils.toWei('0.00003', 'ether'))
+await fs.writeFile('.env', `ADDRESS=${res.deployedContract.options.address}`)
 // console.log(res)
 
 // let totalVotesForRama = await res.deployedContract.methods.totalVotesFor(web3.utils.asciiToHex('Rama')).call()

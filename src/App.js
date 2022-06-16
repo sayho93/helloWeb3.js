@@ -141,7 +141,7 @@ export default function App({$app, $web3}) {
         )
 
         const contract = new $web3.eth.Contract(abi)
-        contract.options.address = '0xA58dBFa9Ad6F221071d4b7b2EE58e00dc0b829D6'
+        contract.options.address = '0x816494868B065090178Dc949862e4d70869b7F28'
 
         const account = (await $web3.eth.getAccounts())[0]
 
